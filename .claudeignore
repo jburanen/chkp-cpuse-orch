@@ -1,0 +1,76 @@
+# ==========================================================================
+# chkp-cpuse-orch .claudeignore
+# Files Claude Code should NOT read. Keeps customer credentials, real site
+# inventories, and captured runtime output out of the model's context so it
+# can never be echoed into a commit, PR, or shared artifact.
+# The .claude/ memory + settings are intentionally NOT ignored.
+# ==========================================================================
+
+# --- Secrets & credentials ------------------------------------------------
+*.key
+*.pem
+*.pfx
+*.p12
+*.crt
+*.cer
+id_rsa*
+id_ecdsa*
+id_ed25519*
+known_hosts
+*.secret
+*.secrets
+secrets.*
+credentials.*
+.credentials
+*.env
+.env
+.env.*
+!.env.example
+vault-password*
+*.vault
+
+# --- Real customer inventory & site topology (templates stay visible) -----
+inventory.y*ml
+inventory/*.y*ml
+inventories/
+hosts.y*ml
+sites/
+environments/
+!*.example.y*ml
+!*.sample.y*ml
+!example*.y*ml
+!sample*.y*ml
+
+# --- CDT plans, package repo, captured targets ----------------------------
+cdt_plans/
+deployment_plans/
+*.cdt.xml
+targets*.csv
+packages/
+repository/
+
+# --- Runtime output that may contain live infrastructure detail -----------
+logs/
+*.log
+run/
+runs/
+state/
+*.state
+reports/
+out/
+output/
+artifacts/
+
+# --- Noise (large / generated; not useful as model context) ---------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage*

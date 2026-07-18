@@ -1,0 +1,17 @@
+# Example config — SAFE TO COMMIT (non-sensitive defaults only).
+# Copy to `config.yaml` (git-ignored) and adjust. Secrets never live here.
+
+defaults:
+  dry_run: true                 # mutating ops preview by default
+  max_concurrent_gateways: 2    # blast-radius cap
+  reboot_after_install: true
+  stop_on_first_failure: true
+  snapshot_before_install: true
+
+paths:
+  reports_dir: reports
+  logs_dir: logs
+  state_dir: state
+
+# Name of the approved maintenance window to enforce (looked up at runtime).
+maintenance_window: null

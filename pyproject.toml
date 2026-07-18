@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chkp-cpuse-orch"
+version = "0.0.1"
+description = "Orchestration layer for Check Point's Central Deployment Tool (CDT/CPUSE) — staged, health-gated patching and upgrades across management servers and gateways."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "chkp-cpuse-orch contributors" }]
+keywords = ["check-point", "cdt", "cpuse", "firewall", "orchestration", "patching"]
+classifiers = [
+  "Programming Language :: Python :: 3.11",
+  "Intended Audience :: System Administrators",
+  "Topic :: System :: Systems Administration",
+]
+
+dependencies = [
+  "typer>=0.12",
+  "pydantic>=2.6",
+  "paramiko>=3.4",
+  "pyyaml>=6.0",
+  "rich>=13.7",
+  "structlog>=24.1",
+  "httpx>=0.27",
+  "tenacity>=8.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.5",
+  "mypy>=1.10",
+  "types-paramiko",
+  "types-PyYAML",
+]
+
+[project.scripts]
+chkp-cpuse-orch = "chkp_cpuse_orch.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
